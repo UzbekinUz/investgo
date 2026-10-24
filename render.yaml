@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: investgo
+    runtime: node
+    plan: free
+    buildCommand: npm --prefix client install --include=dev && npm --prefix client run build && npm --prefix server install
+    startCommand: npm --prefix server start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: MONGODB_URI
+        sync: false # MongoDB Atlas ulanish satri (Render dashboard'da kiritiladi)
