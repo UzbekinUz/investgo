@@ -1,0 +1,183 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Onest', system-ui, sans-serif;
+  /* Samarqand ferruzasi, tanga oltini */
+  --color-teal: #0a2d33;
+  --color-deep: #040d10;
+  --color-mist: #e8f0ed;
+  --color-paper: #f4f8f6;
+  --color-gold: #f5b72e;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-deep);
+  color: var(--color-paper);
+  font-size: 18px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+  font-weight: 800;
+  text-wrap: balance;
+}
+
+.wrap {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+@media (min-width: 768px) {
+  .wrap {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.section {
+  padding-top: 96px;
+  padding-bottom: 96px;
+}
+@media (min-width: 768px) {
+  .section {
+    padding-top: 160px;
+    padding-bottom: 160px;
+  }
+}
+
+.h-xl {
+  font-size: clamp(2.6rem, 5.4vw, 6.4rem);
+}
+.h-lg {
+  font-size: clamp(2.3rem, 5vw, 5rem);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 28px;
+  font-weight: 700;
+  background: var(--color-gold);
+  color: var(--color-deep);
+  border-radius: 999px;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  background: #ffc94d;
+}
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-gold);
+  outline-offset: 3px;
+}
+::selection {
+  background: var(--color-gold);
+  color: var(--color-deep);
+}
+
+/* Kirish harakati: JS bo'lmasa kontent ko'rinib turadi */
+.js .rv {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--d, 0ms);
+}
+.js .rv.in {
+  opacity: 1;
+  transform: none;
+}
+
+.marquee-wrap{overflow:hidden}
+.marquee{animation:marquee 60s linear infinite}
+.marquee-wrap:hover .marquee{animation-play-state:paused}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion: reduce){.marquee-wrap{overflow-x:auto}}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(-3deg);
+  }
+}
+.coin-drift {
+  animation: drift 9s ease-in-out infinite;
+}
+.coin-star {
+  transform-origin: 250px 250px;
+  animation: spin-slow 60s linear infinite;
+}
+
+/* Range input */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-teal) 25%, transparent);
+  cursor: pointer;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  border: 6px solid var(--color-deep);
+  transition: transform 0.15s;
+}
+input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+input[type='range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--color-gold);
+  border: 6px solid var(--color-deep);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .rv {
+    transform: none;
+    transition: opacity 0.2s;
+  }
+  .marquee,
+  .coin-drift,
+  .coin-star {
+    animation: none;
+  }
+  .btn,
+  input[type='range']::-webkit-slider-thumb {
+    transition: none;
+  }
+}
